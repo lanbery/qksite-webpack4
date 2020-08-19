@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title><%= htmlWebpackPlugin.options.title %></title>
+
+</head>
+<body>
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <div class="container level">
+        <div class="level-left">
+          <div>
+            <p class="title">
+              MetaMask Signed Demo
+            </p>
+            <p class="subtitle">
+              signed with ethjs
+            </p>
+          </div>
+        </div>
+
+        <div class="level-right">
+          <div class="has-text-centered">
+            <figure class="image is-128x128">
+              <img src="images/metamask_square.png" class="is-rounded">
+            </figure>
+            <div class="control px-2">
+              <button class="button is-small is-info" id="btn_connect">
+                Connect
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="signApp">
+    <div class="container">
+      <div class="columns is-mobile">
+        <div class="column">
+          <div class="field">
+            <label for="" class="label">Input</label>
+            <div class="control">
+              <textarea name="originText" id="originText" placeholder="entry a json string" cols="30" rows="2"
+                class="textarea is-info">
+                  </textarea>
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-small is-primary">
+                Eth Sign
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-small">
+                Personal Sign
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-small">
+                Sign Typed Data v1
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-small">
+                Sign Typed Data v1
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-small">
+                Sign Typed Data v1
+              </button>
+            </div>
+            <div class="control">
+              <button class="button is-small">
+                Sign Typed Data v1
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- right -->
+        <div class="column">
+          <div id="signed">
+            <h5>Signed Result</h5>
+            <p class="is-success">
+              hhhhsdf
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-fixed footer lanui-footer">
+    <div class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">network</p>
+          <p class="title has-text-info" id="currentChain">
+            Ropsten
+          </p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+
+        <img id="footerLogo" style="height: 44px;">
+
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Address</p>
+          <p class="title is-size-6" id="currentWallet">
+            0x02f6054FF0B2847bc3ca5b4C75646353cC99f990
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="content has-text-centered">
+      <p>
+        <strong >Sign Demo</strong> by
+        <a href="https://lanbery.github.io" target="lanbery Blog">lanbery</a>. 
+        The source code is licensed 
+        <a href="https://github.com/lanbery/qksite-webpack4/blob/master/LICENSE" target="github">MIT</a>.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

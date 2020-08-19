@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+$footer-padding: 1rem 1.5rem 1.5rem;
+
+@import "~bulma/bulma";
+
+.lanui-footer {
+  background: linear-gradient(-30deg, #4f38a4, #a244bc 45%, #4f38a4 45%) #4f38a4;
+  margin: 1.5rem 0 0 0;
+}
+
+.lanui-footer * {
+  color: #fff;
+}
+
+.lanui-footer a:hover {
+  color: hsl(48, 100%, 96%);
+  font-size: 1.05rem;
+}
+
+.footer-fixed {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width:100%;
+}
+
