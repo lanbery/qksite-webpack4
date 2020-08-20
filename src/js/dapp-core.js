@@ -1,6 +1,5 @@
-import Web3 from 'web3'
-import { fromWei, toWei } from "web3-utils";
-
+import Web3 from "web3";
+import { fromWei } from "web3-utils";
 
 import {
   BTN_CONNECT,
@@ -28,65 +27,65 @@ const DAppName = "Sign Demo";
 
 /** ++++++++++++ init Object begin ++++++++++ */
 const EthJsSignhandler = async (e) => {
-  e.preventDefault()
+  e.preventDefault();
 
   const input = document.querySelector("#" + INPUT_DATA);
-  const data = input.value
-  console.log("sign data>>>",data)
-  const {web3,ethereum} = window
-  if(!web3 || !web3.currentProvider) throw new Error('no web3 provider...')
-  if(!data){
-    alert('please entry data')
+  const data = input.value;
+  console.log("sign data>>>", data);
+  const { web3, ethereum } = window;
+  if (!web3 || !web3.currentProvider) throw new Error("no web3 provider...");
+  if (!data) {
+    alert("please entry data");
     return;
   }
+  try {
+    let wallet = ethereum.selectedAddress;
 
-  let wallet = ethereum.selectedAddress;
+    if (!wallet) {
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
 
-  if (!wallet) {
-    const accounts = await ethereum.request({
-      method: "eth_requestAccounts",
-    });
+      wallet = accounts[0];
+    }
 
-    wallet = accounts[0]
+    const signRes = await personalSign({ message: data, address: wallet });
+
+    document.querySelector("#originVol").value = signRes.origin;
+    const signContainer = document.querySelector("#origin");
+    signContainer.innerHTML = "";
+    signContainer.innerHTML = formatJsonHtml(signRes.origin, true);
+
+    const signDataContainer = document.querySelector("#signed");
+    signDataContainer.value = signRes.signData;
+  } catch (err) {
+    window.alert(err.message)
   }
+};
 
-  const signRes = await personalSign({ message: data, address: wallet });
-
-  document.querySelector("#originVol").value = signRes.origin;
-  const signContainer = document.querySelector("#origin");
-  signContainer.innerHTML ='';
-  signContainer.innerHTML = formatJsonHtml(signRes.origin,true);
-
-  const signDataContainer = document.querySelector("#signed");
-  signDataContainer.value = signRes.signData;
-
-}
-
-const BindInputChanged = () =>{
+const BindInputChanged = () => {
   const input = document.querySelector("#" + INPUT_DATA);
   input.onchange = (e) => {
-    cleanContents()
-  }
-}
+    cleanContents();
+  };
+};
 
-const ValidSignHandler = async (e) =>{
+const ValidSignHandler = async (e) => {
   const origin = document.querySelector("#originVol").value;
   const hexData = document.querySelector("#signed").value;
 
-  try{
+  try {
     const params = {
       origin,
       hexData,
     };
     const address = await validifySign(params);
 
-    document.querySelector("#validContainer").textContent = address ||'';
-
-  }catch(err){
-    window.alert(err.message)
+    document.querySelector("#validContainer").textContent = address || "";
+  } catch (err) {
+    window.alert(err.message);
   }
-}
-
+};
 
 /** ++++++++++++ init Object end ++++++++++ */
 
@@ -126,7 +125,6 @@ function showUnsupport({ code, message }) {
 }
 
 export const initialize = () => {
-
   const injected = isInjected();
 
   if (!injected) {
@@ -139,22 +137,20 @@ export const initialize = () => {
     throw new DappError(err);
   }
 
-  if(window.web3){
+  if (window.web3) {
     window.web3 = new Web3(window.web3.currentProvider);
   }
 
-  initFooter()
+  initFooter();
   bindChangeChainEvent();
   bindConnectEvent();
   BindInputChanged();
 
   bindButtonsEvent();
-
 };
 
-
 /**
- * 
+ *
  */
 function cleanContents() {
   document.querySelector("#originVol").value = "";
@@ -163,16 +159,13 @@ function cleanContents() {
   document.querySelector("#validContainer").textContent = "";
 }
 
-
-function bindButtonsEvent(){
+function bindButtonsEvent() {
   document.querySelector(
     "#" + BTN_ETHJS_PERSONAL_SIGN
   ).onclick = EthJsSignhandler;
 
   document.querySelector("#ecRecover").onclick = ValidSignHandler;
 }
-
-
 
 function bindConnectEvent() {
   const connBtn = document.querySelector("#" + BTN_CONNECT);
@@ -185,7 +178,7 @@ function bindConnectEvent() {
         method: "eth_requestAccounts",
       });
 
-      bindChangeChainEvent()
+      bindChangeChainEvent();
 
       initFooter();
       console.log("connect success.", accounts[0]);
@@ -205,22 +198,24 @@ async function initFooter() {
 
   if (ethereum) {
     const network = findNetwork(parseInt(ethereum.chainId));
-    document
-      .querySelector("#currentChain")
-      .textContent = network ? network.short : "";
+    document.querySelector("#currentChain").textContent = network
+      ? network.short
+      : "";
 
-    document
-      .querySelector("#currentWallet")
-      .textContent = ethereum.selectedAddress || "" ;
+    document.querySelector("#currentWallet").textContent =
+      ethereum.selectedAddress || "";
 
     if (ethereum.selectedAddress) {
-      const balBn = await ethBalance({wallet:ethereum.selectedAddress,eth:ethereum});
+      const balBn = await ethBalance({
+        wallet: ethereum.selectedAddress,
+        eth: ethereum,
+      });
 
-      const balStr = fromWei(balBn.toString(10),'ether');
-      console.log("wei:", balBn.toString(10),balStr);
+      const balStr = fromWei(balBn.toString(10), "ether");
+      console.log("wei:", balBn.toString(10), balStr);
 
       const balanceEl = document.querySelector("#ethBalance");
-      if(balanceEl){
+      if (balanceEl) {
         balanceEl.textContent = parseFloat(balStr).toFixed(4);
       }
     }
@@ -232,14 +227,14 @@ function setWallet(wallet) {
   currWallet.textContent = wallet || "";
 }
 
-function bindChangeChainEvent(){
-  const {ethereum} = window
+function bindChangeChainEvent() {
+  const { ethereum } = window;
 
   ethereum.on("chainChanged", (chainId) => {
-    initFooter()
+    initFooter();
   });
 
-  ethereum.on("accountsChanged", (accounts)=>{
+  ethereum.on("accountsChanged", (accounts) => {
     initFooter();
   });
 }
@@ -249,7 +244,7 @@ function bindChangeChainEvent(){
  */
 function isInjected() {
   const { ethereum } = window;
-  if(ethereum)ethereum.autoRefreshOnNetworkChange = false;
+  if (ethereum) ethereum.autoRefreshOnNetworkChange = false;
   return Boolean(ethereum && ethereum.isMetaMask);
 }
 
