@@ -39,7 +39,19 @@
     </div>
   </section>
 
-  <section id="signApp">
+  <section class="hero is-danger is-hidden" id="error">
+    <div class="hero-body has-text-centered">
+      <div class="container has-text-centered">
+        <p class="title">
+          Error Code: <span id="errCode"></span>
+        </p>
+        <p class="subtitle-2" id="errMsg">
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="signApp" class="my-5">
     <div class="container">
       <div class="columns is-mobile">
         <div class="column">
@@ -47,52 +59,83 @@
             <label for="" class="label">Input</label>
             <div class="control">
               <textarea name="originText" id="originText" placeholder="entry a json string" cols="30" rows="2"
-                class="textarea is-info">
-                  </textarea>
+                class="textarea is-info"></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Origin data</label>
+            <div class="control">
+              <pre class="is-small dark" id="origin">
+              </pre>
             </div>
           </div>
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-small is-primary">
-                Eth Sign
+              <button 
+                id="btn_ethjs_personal_sign"
+                class="button is-small is-primary">
+                EthJs Sign
               </button>
             </div>
             <div class="control">
-              <button class="button is-small">
+              <button 
+                id="btn_personal_sign"
+                class="button is-small is-info">
                 Personal Sign
               </button>
             </div>
-            <div class="control">
-              <button class="button is-small">
+            <!-- <div class="control">
+              <button 
+                id=""
+                class="button is-small">
                 Sign Typed Data v1
               </button>
             </div>
             <div class="control">
-              <button class="button is-small">
+              <button class="button is-small is-warning">
                 Sign Typed Data v1
               </button>
             </div>
             <div class="control">
-              <button class="button is-small">
+              <button class="button is-small is-danger">
                 Sign Typed Data v1
               </button>
             </div>
             <div class="control">
-              <button class="button is-small">
+              <button class="button is-small is-success">
                 Sign Typed Data v1
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- right -->
         <div class="column">
-          <div id="signed">
-            <h5>Signed Result</h5>
-            <p class="is-success">
-              hhhhsdf
-            </p>
+          <div class="field">
+            <label class="label">Signed Result</label>
+            <div class="control">
+              <textarea 
+              readonly placeholder="Signed Data will show here" 
+              cols="30" rows="5" class="textarea is-success" id="signed"></textarea>
+            </div>
           </div>
+          <input type="text" id="originVol" class="is-hidden">
+          <div class="field">
+            <div class="control">
+
+              <button class="button is-small is-danger" id="ecRecover">
+                Valid Signed
+              </button>
+            </div>
+          </div>
+          <hr>
+          <div class="field">
+            <div class="control">
+              <p id="validContainer" class="is-small is-danger"></p>
+            </div>
+          </div>
+
         </div>
+
       </div>
     </div>
   </section>
@@ -116,8 +159,9 @@
         <div>
           <p class="heading">Address</p>
           <p class="title is-size-6" id="currentWallet">
-            0x02f6054FF0B2847bc3ca5b4C75646353cC99f990
+            
           </p>
+          <p class="is-small has-text-danger" id="ethBalance"></p>
         </div>
       </div>
     </div>

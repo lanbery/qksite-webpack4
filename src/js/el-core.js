@@ -6,6 +6,9 @@ export const BTN_SIGN_TYPED_DATA_V1 = "btn_sign_typed_data_v1"
 export const BTN_SIGN_TYPED_DATA_V2 = "btn_sign_typed_data_v2"
 export const BTN_SIGN_TYPED_DATA_V3 = "btn_sign_typed_data_v3"
 export const BTN_SIGN_TYPED_DATA_V4 = "btn_sign_typed_data_v4"
+export const INPUT_DATA = "originText"
+export const UNSUPPORT_EL="unsupport_message"
+
 
 export default {
   BTN_CONNECT,

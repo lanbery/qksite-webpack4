@@ -22,6 +22,12 @@ $footer-padding: 1rem 1.5rem 1.5rem;
   position: fixed;
   left: 0;
   bottom: 0;
-  width:100%;
+  width: 100%;
 }
 
+pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+.json-string { color: green; }
+.json-number { color: darkorange; }
+.json-boolean { color: blue; }
+.json-null { color: magenta; }
+.json-key { color: red; }

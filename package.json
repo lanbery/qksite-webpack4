@@ -24,8 +24,11 @@
   },
   "homepage": "https://github.com/lanbery/qksite-webpack4#readme",
   "dependencies": {
+    "@metamask/detect-provider": "^1.0.1",
     "bulma": "^0.9.0",
-    "ethereumjs-util": "^7.0.4"
+    "ethereumjs-util": "^7.0.4",
+    "web3": "^1.2.11",
+    "web3-utils": "^1.2.11"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
