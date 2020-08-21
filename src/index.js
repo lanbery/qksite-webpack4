@@ -2,7 +2,7 @@ import "./fonts/Roboto-Regular.ttf";
 import "./styles/bulma.scss";
 import daniu from "./images/daniu.svg";
 import metamask from "./images/metamask_square.png";
-import metamasklong from "./images/logo_header.png";
+import metamasklong from "./images/metamask_long.png";
 import { initialize } from "./js/dapp-core";
 
 import web3Utils from "web3-utils"
