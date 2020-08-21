@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin"),
   path = require('path');
 
 const paths = require("./paths"),
-  env = require("./env");
+  {title} = require('../config');
 
 module.exports = {
   context: paths.context,
@@ -111,13 +111,13 @@ module.exports = {
     //   },
     // ]),
     new HtmlWebpackPlugin({
-      title: env.title,
+      title: title,
       favicon: paths.favicon,
       template: paths.join(paths.src, "temp.html"),
       filename: "index.html",
     }),
     new MiniCssExtractPlugin({
-      filename:'css/lbulma.css'
-    })
+      filename: "css/lbulma.css",
+    }),
   ],
 };

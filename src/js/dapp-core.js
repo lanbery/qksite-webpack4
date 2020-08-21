@@ -27,8 +27,7 @@ const DAppName = "Sign Demo";
 
 /** ++++++++++++ init Object begin ++++++++++ */
 const EthJsSignhandler = async (e) => {
-  e.preventDefault();
-
+ 
   const input = document.querySelector("#" + INPUT_DATA);
   const data = input.value;
   console.log("sign data>>>", data);
@@ -61,6 +60,7 @@ const EthJsSignhandler = async (e) => {
   } catch (err) {
     window.alert(err.message)
   }
+   e.preventDefault();
 };
 
 const BindInputChanged = () => {

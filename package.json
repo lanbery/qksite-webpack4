@@ -4,7 +4,7 @@
   "description": "A website demo with webpack4",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config config/webpack.dev.js",
+    "dev": "webpack-dev-server --config ci/webpack.dev.js",
     "build": "",
     "lint": "eslint --ext .jsx,.js src",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -42,6 +42,7 @@
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "compression-webpack-plugin": "^5.0.0",
     "copy-webpack-plugin": "^6.0.3",

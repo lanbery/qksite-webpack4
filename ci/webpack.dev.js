@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 const baseWebpackConfig = require('./webpack.base'),
   paths = require('./paths'),
-  { dev } = require('./utils');
+  { dev } = require('../config');
 
 
 const ROOT_DIRECTORY = process.cwd()

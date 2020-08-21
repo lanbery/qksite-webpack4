@@ -1,6 +1,5 @@
 const pkgJson = require('../package.json')
 
-
 /**
  * tiny env wrapper
  */
